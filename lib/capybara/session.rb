@@ -702,9 +702,7 @@ module Capybara
     #
     # If invoked without arguments it will save file to `Capybara.save_path`
     #   and file will be given randomly generated filename. If invoked with a relative path
-    #   the path will be relative to `Capybara.save_path`, which is different from
-    #   the previous behavior with `Capybara.save_and_open_page_path` where the relative path was
-    #   relative to Dir.pwd
+    #   the path will be relative to `Capybara.save_path`
     #
     # @param [String] path  the path to where it should be saved
     # @return [String]      the path to which the file was saved
@@ -721,9 +719,7 @@ module Capybara
     #
     # If invoked without arguments it will save file to `Capybara.save_path`
     #   and file will be given randomly generated filename. If invoked with a relative path
-    #   the path will be relative to `Capybara.save_path`, which is different from
-    #   the previous behavior with `Capybara.save_and_open_page_path` where the relative path was
-    #   relative to Dir.pwd
+    #   the path will be relative to `Capybara.save_path`
     #
     # @param [String] path  the path to where it should be saved
     #
@@ -738,9 +734,7 @@ module Capybara
     #
     # If invoked without arguments it will save file to `Capybara.save_path`
     #   and file will be given randomly generated filename. If invoked with a relative path
-    #   the path will be relative to `Capybara.save_path`, which is different from
-    #   the previous behavior with `Capybara.save_and_open_page_path` where the relative path was
-    #   relative to Dir.pwd
+    #   the path will be relative to `Capybara.save_path`
     #
     # @param [String] path    the path to where it should be saved
     # @param [Hash] options   a customizable set of options
@@ -757,9 +751,7 @@ module Capybara
     #
     # If invoked without arguments it will save file to `Capybara.save_path`
     #   and file will be given randomly generated filename. If invoked with a relative path
-    #   the path will be relative to `Capybara.save_path`, which is different from
-    #   the previous behavior with `Capybara.save_and_open_page_path` where the relative path was
-    #   relative to Dir.pwd
+    #   the path will be relative to `Capybara.save_path`
     #
     # @param [String] path    the path to where it should be saved
     # @param [Hash] options   a customizable set of options
@@ -866,11 +858,7 @@ module Capybara
     end
 
     def prepare_path(path, extension)
-      if config.save_path || config.save_and_open_page_path.nil?
-        path = File.expand_path(path || default_fn(extension), config.save_path)
-      else
-        path = File.expand_path(default_fn(extension), config.save_and_open_page_path) if path.nil?
-      end
+      path = File.expand_path(path || default_fn(extension), config.save_path)
       FileUtils.mkdir_p(File.dirname(path))
       path
     end
